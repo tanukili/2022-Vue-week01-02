@@ -1,6 +1,6 @@
 // 產品資料格式
 
-products: [
+let products = [
   {
     category: "甜甜圈",
     content: "尺寸：14x14cm",
@@ -53,4 +53,67 @@ products: [
   }
 ]
 
-//新增產品
+const productList = document.querySelector('.productList');
+const productNum = document.querySelector('.productNum')
+
+//渲染產品列表
+function renderProductList(){
+  let template = '';
+  products.forEach( item => {
+    template = template + 
+    `<tr>
+      <td width="150">${item.title}</td>
+      <td width="120">
+        ${item.origin_price}
+      </td>
+      <td width="120">
+        ${item.price}
+      </td>
+      <td width="150">
+      <span class="text-success">啟用</span>
+        <span>未啟用</span>
+      </td>
+      <td width="120">
+        <button type="button" class="btn btn-primary">查看細節</button>
+      </td>
+    </tr>`;
+  });
+  productList.innerHTML = template;
+  productNum.innerHTML = `目前有 <span>${products.length}</span> 項產品`;
+  
+}
+renderProductList();
+
+//渲染產品細節
+const productDetail = document.querySelector('.productDetail');
+
+function renderProductDetail(id) {
+  const data = products.filter(item => item.id === id);
+  console.log(data[0].title);
+  let template = '';
+  template = 
+  `<template>
+    <div class="card mb-3">
+      <img src="" class="card-img-top primary-image" alt="主圖">
+      <div class="card-body">
+        <h5 class="card-title">
+          ${data.title}
+          <span class="badge bg-primary ms-2">{{  }}</span>
+        </h5>
+        <p class="card-text">商品描述：{{  }}</p>
+        <p class="card-text">商品內容：{{  }}</p>
+        <div class="d-flex">
+          <p class="card-text me-2">{{  }}</p>
+          <p class="card-text text-secondary"><del>{{  }}</del></p>
+        元 / {{  }}
+        </div>
+      </div>
+    </div>
+    <template>
+      <img src="" alt="" class="images m-2">
+    </template>
+  </template>
+  `;
+  productDetail.innerHTML = template;
+};
+renderProductDetail('-L9tH8jxVb2Ka_DYPwng');
