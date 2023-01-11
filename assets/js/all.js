@@ -54,5 +54,29 @@ Vue.createApp({
     // 元件生成時載入
     this.products = products;
   }
-}).mount('#app');
+}).mount('#app'); // 開始串接 API
+
+var url = 'https://vue3-course-api.hexschool.io/v2/';
+var path = 'vuejslive2022';
+var emailInput = document.querySelector('#username');
+var pwInput = document.querySelector('#password');
+var loginBtn = document.querySelector('.btn'); // #1 登入
+
+loginBtn.addEventListener('click', login);
+
+function login() {
+  var username = emailInput.value;
+  var password = pwInput.value;
+  var user = {
+    username: username,
+    password: password
+  };
+  axios.post("".concat(url, "admin/signin"), user).then(function (res) {
+    console.log(res);
+    console.log(1);
+  })["catch"](function (err) {
+    console.dir(err);
+    alert(err.response.data.message);
+  });
+}
 //# sourceMappingURL=all.js.map
