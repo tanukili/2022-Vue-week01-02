@@ -54,29 +54,43 @@ Vue.createApp({
     // 元件生成時載入
     this.products = products;
   }
-}).mount('#app'); // 開始串接 API
+}).mount('#app');
+"use strict";
 
-var url = 'https://vue3-course-api.hexschool.io/v2/';
-var path = 'vuejslive2022';
-var emailInput = document.querySelector('#username');
-var pwInput = document.querySelector('#password');
-var loginBtn = document.querySelector('.btn'); // #1 登入
-
-loginBtn.addEventListener('click', login);
-
-function login() {
-  var username = emailInput.value;
-  var password = pwInput.value;
-  var user = {
-    username: username,
-    password: password
-  };
-  axios.post("".concat(url, "admin/signin"), user).then(function (res) {
-    console.log(res);
-    console.log(1);
-  })["catch"](function (err) {
-    console.dir(err);
-    alert(err.response.data.message);
-  });
-}
+// const emailInput = document.querySelector('#username');
+// const pwInput = document.querySelector('#password');
+// const loginBtn = document.querySelector('.btn');
+// // #1 登入
+// loginBtn.addEventListener('click', login);
+// function login(){
+//   const username = emailInput.value;
+//   const password = pwInput.value;
+//   const user = {
+//     username,
+//     password
+//   }
+Vue.createApp({
+  data: function data() {
+    return {
+      user: {
+        username: '',
+        password: ''
+      }
+    };
+  },
+  methods: {
+    login: function login() {
+      console.log(username, password); // const url = 'https://vue3-course-api.hexschool.io/v2/';
+      // axios.post(`${url}admin/signin`, this.user)
+      // .then((res) => {
+      //     console.log(res);
+      //     console.log(1);
+      // })
+      // .catch((err) => {
+      //     console.dir(err);
+      //     alert(err.response.data.message)
+      // })
+    }
+  }
+}).mount('#app');
 //# sourceMappingURL=all.js.map
